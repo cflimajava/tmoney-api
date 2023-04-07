@@ -1,7 +1,7 @@
 package com.trackingmoney.TMoney.controllers;
 
-import com.trackingmoney.TMoney.entities.Expense;
-import com.trackingmoney.TMoney.services.ExpenseService;
+import com.trackingmoney.TMoney.entities.Entry;
+import com.trackingmoney.TMoney.services.EntryService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,15 +14,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 @AllArgsConstructor
 @RestController
-@RequestMapping("/expense")
-public class ExpenseController {
+@RequestMapping("/entry")
+public class EntryController {
 
     @Autowired
-    private final ExpenseService expenseService;
+    private final EntryService service;
     @PostMapping(path = "/add", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity addExpense(@RequestBody Expense entity){
+    public ResponseEntity addExpense(@RequestBody Entry entity){
 
-        Expense expense = expenseService.insertExpense(entity);
+        Entry expense = service.insertEntry(entity);
 
         return new ResponseEntity(expense, HttpStatus.CREATED);
     }
